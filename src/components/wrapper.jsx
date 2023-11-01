@@ -1,31 +1,34 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { quotesDb } from "../database/quotes";
+import { database } from "../database/database";
+import "../stylesheets/Wrapper.css"
+import { getRandomInt } from "../scripts/rndNumber";
+import { AiOutlineTwitter } from "react-icons/ai";
 
-function Wrapper() {
+
+
+function Wrapper({color, handleColorChange}) {
   const [quote, setQuote] = useState({});
-  const [number, setNumber] = useState();
-  const { quotes } = quotesDb;
+  const {quotes} = database;
 
-  const getRandomInt = () => {
-    const max = 10;
-    return Math.floor(Math.random() * max);
-  };
+ 
   const handleQuot = () => {
-    setQuote(quotes[getRandomInt()]);
+    setQuote(quotes[getRandomInt(quotes.length)]);
+    handleColorChange();
   };
   useEffect(() => {
     handleQuot();
   }, []);
 
   return (
-    <div className="wrapper" id="quote-box">
-      <p id="text">{quote.quote}</p>
-      <p id="author">{quote.author}</p>
-      <a id="tweet-quote" href={"https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="+ quote.quote + " - " + quote.author }>t</a>
-      <button id="new-quote" onClick={() => handleQuot()}>
+    <div className="wrapper" id="quote-box" style={{"color": color}}>
+      <p id="text"  >"{quote.quote}"</p>
+      <p id="author" >- {quote.author}</p>
+      <div className="buttons-container">
+      <a id="tweet-quote" href={"https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="+ quote.quote + " - " + quote.author } style={{"background": color}}><AiOutlineTwitter/></a>
+      <button id="new-quote" style={{"background": color}} onClick={() => handleQuot()}>
         New Quot
       </button>
+      </div>
     </div>
   );
 }

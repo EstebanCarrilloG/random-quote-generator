@@ -1,0 +1,36 @@
+.wrapper{
+    box-shadow: inset 0px 0px 13px 8px rgb(219 219 219);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 40%;
+    text-align: center;
+    background: white;
+    #text{
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    #author{
+        font-size: 1.2rem;
+        text-align: right;
+        padding-right: 2rem;
+    }
+    & button{
+        outline: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: .3rem;
+        color: white;
+    }
+    .buttons-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        & a{
+            padding: 0.5rem;
+            color: white;
+            border-radius: .3rem;
+        }
+    }
+}
