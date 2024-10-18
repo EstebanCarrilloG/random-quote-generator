@@ -12,12 +12,8 @@ let quotesData;
 function Wrapper({ color, handleColorChange }) {
   const [quote, setQuote] = useState({});
 
-  //const { quotes } = getQuotes;
-  //const {quotes} = database;
-
   const handleQuot = () => {
     let { quotes } = quotesData;
-    console.log(quotes);
     setQuote(quotes[getRandomInt(quotes.length)]);
     handleColorChange();
   };
@@ -31,8 +27,6 @@ function Wrapper({ color, handleColorChange }) {
       success: function (jsonQuotes) {
         if (typeof jsonQuotes === "string") {
           quotesData = JSON.parse(jsonQuotes);
-          console.log("quotesData");
-          console.log(quotesData);
         }
       },
     });
@@ -66,6 +60,7 @@ function Wrapper({ color, handleColorChange }) {
             quote.author
           }
           style={{ background: color }}
+          target="_blank"
         >
           <AiOutlineTwitter />
         </a>
